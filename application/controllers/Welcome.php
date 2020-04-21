@@ -42,7 +42,7 @@ if($flag == 0){
                       'e-mail'=>$this->input->post('mail'),
                       'startup'=> date('d-m-y')
         );
-        $this->WelcomeDAO->Register($user);
+        echo $this->WelcomeDAO->Register($user);
       }
       else echo 'Bledne dane';
 }
