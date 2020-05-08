@@ -10,7 +10,7 @@ class Welcome extends CI_Controller
             $this->load->helper('url');
             $this->load->database();
             $this->load->library('form_validation');
-          //  $this->load->library(array('form_validation','session'));
+
 
   }
 
@@ -55,7 +55,13 @@ if($flag == 0){
 );
 
 $flag = $this->WelcomeDAO->Login($user);
-if($flag == 1) echo 'Hello World';
-else echo 'nie dziala logowanie';
+if($flag == 1)
+{
+  session_start();
+  $_SESSION['id'] = session_id();
+  echo json_encode($_SESSION['id']);
+
+}
+else echo 'bledne dane';
   }
 }
