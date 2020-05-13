@@ -9,12 +9,24 @@ class Main extends CI_Controller
             $this->load->model('WelcomeDAO');
             $this->load->helper('url');
             $this->load->database();
-            $this->load->library('form_validation');
+            $this->load->library('session');
     }
   public function index()
     {
+      $loggedin = $this->session->userdata('loggedin');
+      if($loggedin == 1)
+      {
         $this->load->view('templates/header');
+        $this->load->view('pages/mainpage/logout');
         $this->load->view('pages/mainpage/mainpage');
         $this->load->view('templates/footer');
+      }
+    else redirect('Welcome', 'index');
     }
+  public function logout()
+  {
+    session_destroy();
+
+  }
+
 }

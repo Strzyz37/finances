@@ -11,7 +11,6 @@ class Welcome extends CI_Controller
             $this->load->database();
             $this->load->library('form_validation');
 
-
   }
 
   public function index()
@@ -21,6 +20,7 @@ class Welcome extends CI_Controller
  $this->load->view('pages/welcome/login');
  $this->load->view('pages/welcome/register');
  $this->load->view('templates/footer');
+
   }
 
 public function Register()
@@ -57,9 +57,12 @@ if($flag == 0){
 $flag = $this->WelcomeDAO->Login($user);
 if($flag == 1)
 {
-  session_start();
-  $_SESSION['id'] = session_id();
-  echo json_encode($_SESSION['id']);
+   $this->load->library('session');
+   $sess_array = array(
+     'loggedin' => '1'
+   );
+  $this->session->set_userdata($sess_array);
+  echo json_encode('1');
 
 }
 else echo 'bledne dane';
