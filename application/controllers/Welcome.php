@@ -57,9 +57,12 @@ if($flag == 0){
 $flag = $this->WelcomeDAO->Login($user);
 if($flag == 1)
 {
+  $id = $this->WelcomeDAO->getid($user['login']);
    $this->load->library('session');
    $sess_array = array(
-     'loggedin' => '1'
+     'loggedin' => '1',
+     'login' => $user['login'],
+     'id' => $id
    );
   $this->session->set_userdata($sess_array);
   echo json_encode('1');

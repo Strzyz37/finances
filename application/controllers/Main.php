@@ -6,7 +6,7 @@ class Main extends CI_Controller
 
   public function __construct() {
           parent::__construct();
-            $this->load->model('WelcomeDAO');
+            $this->load->model('MainDAO');
             $this->load->helper('url');
             $this->load->database();
             $this->load->library('session');
@@ -27,6 +27,15 @@ class Main extends CI_Controller
   {
     session_destroy();
 
+  }
+  public function getdata()
+  {
+/*    $finances=$this->MainDAO->getdata();
+    echo $finances;
+    echo json_encode($finances);*/
+    $finances=$this->MainDAO->getdata();
+    $finances = json_encode(array('usersData'=>$finances));
+    echo $finances;
   }
 
 }
